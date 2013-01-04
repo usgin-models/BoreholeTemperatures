@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"? ryan="made-changes">
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:aasg="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/boreholetemperature/1.5" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gmlsf="http://www.opengis.net/gmlsf" targetNamespace="http://stategeothermaldata.org/uri-gin/aasg/xmlschema/boreholetemperature/1.5" elementFormDefault="qualified" version="01.05">
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
 	<xs:import namespace="http://www.opengis.net/gmlsf" schemaLocation="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd"/>
