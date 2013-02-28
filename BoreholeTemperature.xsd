@@ -107,7 +107,7 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 					<xs:element name="Salinity" type="xs:string" minOccurs="0"/>
 					<xs:element name="MudResistivity" type="xs:string" minOccurs="0"/>
 					<xs:element name="Density" type="xs:string" minOccurs="0"/>
-					<xs:element name="FluidLevel" type="xs:double" minOccurs="0"/>
+					<xs:element name="FluidLevel" type="xs:string" minOccurs="0"/>
 					<xs:element name="pH" type="xs:double" minOccurs="0"/>
 					<xs:element name="Viscosity" type="xs:string" minOccurs="0"/>
 					<xs:element name="FluidLoss" type="xs:string" minOccurs="0"/>
