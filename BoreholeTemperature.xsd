@@ -4,7 +4,7 @@
 	<xs:import namespace="http://www.opengis.net/gmlsf" schemaLocation="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd"/>
 	<xs:annotation>
 		<!-- This XSD document, including XML schema, indicates the content requested for temperature measurement data obtained from boreholes for the AASG geothermal data project.  Typically bottomhole temperatures are recorded from log headers, and this information will be provided through a borehole temperature observation service. The HeaderURI for a particular borehole (well for simple wells) is the cross-referencing link (foreign key) used to associate the header record, well logs, temperature measurements, and other information from a particular borehole.  Each measurement should have a unique ObservationURI. -->
-		<!--This XSD document was created on 2011-09-16 by Celia Coleman, AZGS, and edited to include descriptive annotation by Christy Caudill 2013-04-10.  This schema is based on the data available in the AASG Web Feature Services created for the borehole temperatures in Arizona and California -->
+		<!--This XSD document was created on 2011-09-16 by Celia Coleman, AZGS.  This schema is based on the data available in the AASG Web Feature Services created for the borehole temperatures in Arizona and California -->
 		<xs:appinfo source="http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd">
 			<gmlsf:ComplianceLevel>0</gmlsf:ComplianceLevel>
 			<gmlsf:GMLProfileSchema>
@@ -16,446 +16,104 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="OBJECTID" type="xs:int" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Integer record count, added by ArcGIS servers during service deployment; not required but cannot be removed when deploying from ArcGIS feature class. Not user maintained, so this element appears in XML implementation but not in the WellHeaderTemplate.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
+					<xs:element name="OBJECTID" type="xs:int" minOccurs="0"/>
 					<xs:element name="ObservationURI">
-						<xs:annotation>
-							<xs:documentation>Unique identifier for this observation record. This is the identifier (Uniform Resource Identifier) that will be used to cross-reference logs, samples, and other observations to the well or borehole represented by this header.  If available, the API (American Petroleum Institute) assigned number is the preferred well name reference. If an APINo is not avaliable, observationURI should include one of the 'OtherID' values (below).</xs:documentation>
-						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string">
 								<xs:maxLength value="255"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="WellName" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The human-intelligible name for the well comprising the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="APINo" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>API number for the the wellbore/borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
+					<xs:element name="WellName" type="xs:string" minOccurs="0"/>
+					<xs:element name="APINo" type="xs:string" minOccurs="0"/>
 					<xs:element name="HeaderURI">
-						<xs:annotation>
-							<xs:documentation>Unique identifier for the borehole described by the elements in this table. If a WellHeader WMS/WFS service exists for this data, the same HeaderURI from that service is ideally used here.</xs:documentation>
-						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string">
 								<xs:maxLength value="255"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="OtherID" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Alternative identifier(s) for the borehole. In the absence of an API number, if an OtherID is available, it should be used in the construction of the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="OtherName" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Other names for the well that contain the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="BoreholeName" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The human-intelligible name of the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Label" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The label for portraying the feature identified by the HeaderURI on a map.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Operator" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Name of the operator of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LeaseName" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Name or number of the lease of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LeaseOwner" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Name or number of the owner of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LeaseNo" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Lease number of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="SpudDate" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Date on which spudding commenced for the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="EndedDrillingDate" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Date on which drilling ended for the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="WellType" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Type of well that contains the borehole identified by the HeaderURI, at the time indicated in the StatusDate element.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Status" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The status of the well that contains the borehole identified by the HeaderURI, at the time indicated in the StatusDate element.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CommodityOfInterest" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The commodity of interest associated with the well that contains the borehole identified by the HeaderURI, at the time indicated in the StatusDate element.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="StatusDate" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The  date on which the Status of the well, of which the borehole identified by the HeaderURI is a constituent part, was verified.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Function" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Functional characterization of the well that contains the borehole identified by the HeaderURI, at the time indicated in the StatusDate element.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Production" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Term indicating the production results of the well that contains the borehole identified by the HeaderURI, at the time indicated in the StatusDate element.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="ProducingInterval" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Free text indicating the interval for which the commodity of interest is being extracted.  May be the screened interval in a cased well.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="ReleaseDate" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Date on which data for the well that contains the borehole identified by the HeaderURI, was or will be made public.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Field" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Name of field in which the well that contains the borehole identified by the HeaderURI is located.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="OtherLocationName" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Other location names associated with the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="County" type="xs:string">
-						<xs:annotation>
-							<xs:documentation>Name of county in which the well that contains the borehole identified by the HeaderURI is located.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="State" type="xs:string">
-						<xs:annotation>
-							<xs:documentation>Name of state in which the well that contains the borehole identified by the HeaderURI is located.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="PLSS_Meridians" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Baseline and meridian to which Township and Range are referenced.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="TWP" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Township in PLSS grid, relative to reported baseline.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="RGE" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Range in PLSS grid, relative to reported meridian.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Section_" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>PLSS section number.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="SectionPart" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Subdivision of a PLSS section.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Parcel" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Legal parcel identifier, or block number, or other location identifier.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="UTM_E" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>UTM easting coordinate.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="UTM_N" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>UTM northing coordinate.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The datum for the reported coordinates and the UTM zone in which the well that contains the borehole identified by the HeaderURI is located.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LatDegree" type="xs:double">
-						<xs:annotation>
-							<xs:documentation>Latitude measurement for the surface location of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LongDegree" type="xs:double">
-						<xs:annotation>
-							<xs:documentation>Longitude measurement for the surface location of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="SRS" type="xs:string">
-						<xs:annotation>
-							<xs:documentation>The spatial reference system.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LocationUncertaintyStatement" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Free text statement describing the uncertainty of the coordinates of the origin of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LocationUncertaintyCode" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>A code reflecting the LocationUncertaintyStatement associated with the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LocationUncertaintyRadius" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>An estimate of the radius of uncertainty regarding the location of the well that contains the borehole identified by the HeaderURI,</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="DrillerTotalDepth" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Length of borehole identified by the HeaderURI, from borehole origin to bottom of borehole.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="DepthReferencePoint" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Point of reference used to measure depth for the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="LengthUnits" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Units used to report all elevation and depth information.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="WellBoreShape" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Term used to indicate the overall shape of the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="TrueVerticalDepth" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Vertical distance from bottom hole point to elevation of borehole origin.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="ElevationKB" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Elevation at kelly bushing for the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="ElevationDF" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Elevation at drill rig floor for well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="ElevationGL" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Elevation at ground level for the origin of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="FormationTD" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Name of geologic unit at the bottom of the well that contains the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="BitDiameterCollar" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Bit diameter at the origin of the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="BitDiameterTD" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Bit diameter at the bottom of the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="DiameterUnits" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Units used to report all diameter information.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Notes" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Any notes about the well or borehole associated with this HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="MaximumRecordedTemperature" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>For clarity, it is assumed that one temperature will be recorded as a bottom hole temperature, therefore, the "MeasuredTemperature" field should be used.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="MeasuredTemperature" type="xs:double">
-						<xs:annotation>
-							<xs:documentation>Report temperture here if instrument records temperature and depth; this may be the same value as reported in the maximum temperature column; if a value is reported here, a DepthOf Measurement value must be reported. At least one Maximum or Measured Temperature is required.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CorrectedTemperature" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Report corrected temperature in this field.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="TemperatureUnits" type="xs:string">
-						<xs:annotation>
-							<xs:documentation>The units for the recorded temperatures (maximumTemperature, CorrectedTemperature and MeasuredTemperature).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="TimeSinceCirculation" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Time since circulation of drilling fluid.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CirculationDuration" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Time that hole was circulated after drilling stopped, in hours. (not available in many cases).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="MeasurementProcedure" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Text description of how the measurement was made--instrumentation, logging rate, correction or extrapolation process, how time since circulation was determined, etc.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CorrectionType" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Term from controlled vocabulary to categorize the correction process, use for filtering results.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="DepthOfMeasurement" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>If the depth at which the maximum or reported temperature was measured is known, report here using length units and datum used to report TD.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="MeasurementDateTime" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Date and time at which measurement was made; if Bottom Hole Temperature, use 'Logger on Bottom' time. Source of time stamp should be recorded in the measurement procedure.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="MeasurementFormation" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Geologic unit for which the temperature was measured, if known.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="MeasurementSource" type="xs:string">
-						<xs:annotation>
-							<xs:documentation>Citation for source of measurement. Typcially for BHT this will be a well log, but corrected or extrapolated temperatures should record who made the corrections.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="RelatedResource" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Well Logs, permit files or other documents associated with the well.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CasingLogger" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Name of the logging company.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CasingBottomDepthDriller" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Deepest cased point of the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CasingTopDepth" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Top of cased interval with casing diameter, weight and thickness as reported in subsequent fields.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CasingPipeDiameter" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Diameter of the casing.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CasingWeight" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Casing pipe weight per length installed in the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CasingWeightUnits" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Units used to report casing weight measurements for borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="CasingThickness" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Thickness of the casing pipe installed in the borehole identified by the HeaderURI.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="DrillingFluid" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Name or type of fluid used during drilling.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Salinity" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Salinity of the drilling fluid.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="MudResistivity" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Resistivity is a measurement of the formation and fluid or mineral conductivity.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Density" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The density of the drilling fluid.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="FluidLevel" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Height of fluid in the hole.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="pH" type="xs:double" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Report the pH of the drilling fluid (no units).</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Viscosity" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The viscosity of the drilling fluid.  Frequently checked during drilling.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="FluidLoss" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>The amount of fluid seeping out of the hole.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="MeasurementNotes" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Additional notes regarding the measurement(s).</xs:documentation>
-						</xs:annotation>
-						</xs:element>
-					<xs:element name="InformationSource" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Original source of the data.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Shape" type="gml:PointPropertyType">
-						<xs:annotation>
-							<xs:documentation>Added by GIS for WFS service; this element appears in the xml output, but is generated during service deployment from the latitude and longitude, therefore it doesn't appear in the template.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
+					<xs:element name="OtherID" type="xs:string" minOccurs="0"/>
+					<xs:element name="OtherName" type="xs:string" minOccurs="0"/>
+					<xs:element name="BoreholeName" type="xs:string" minOccurs="0"/>
+					<xs:element name="Label" type="xs:string" minOccurs="0"/>
+					<xs:element name="Operator" type="xs:string" minOccurs="0"/>
+					<xs:element name="LeaseName" type="xs:string" minOccurs="0"/>
+					<xs:element name="LeaseOwner" type="xs:string" minOccurs="0"/>
+					<xs:element name="LeaseNo" type="xs:string" minOccurs="0"/>
+					<xs:element name="SpudDate" type="xs:string" minOccurs="0"/>
+					<xs:element name="EndedDrillingDate" type="xs:string" minOccurs="0"/>
+					<xs:element name="WellType" type="xs:string" minOccurs="0"/>
+					<xs:element name="Status" type="xs:string" minOccurs="0"/>
+					<xs:element name="CommodityOfInterest" type="xs:string" minOccurs="0"/>
+					<xs:element name="StatusDate" type="xs:string" minOccurs="0"/>
+					<xs:element name="Function" type="xs:string" minOccurs="0"/>
+					<xs:element name="Production" type="xs:string" minOccurs="0"/>
+					<xs:element name="ProducingInterval" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReleaseDate" type="xs:string" minOccurs="0"/>
+					<xs:element name="Field" type="xs:string" minOccurs="0"/>
+					<xs:element name="OtherLocationName" type="xs:string" minOccurs="0"/>
+					<xs:element name="County" type="xs:string"/>
+					<xs:element name="State" type="xs:string"/>
+					<xs:element name="PLSS_Meridians" type="xs:string" minOccurs="0"/>
+					<xs:element name="TWP" type="xs:string" minOccurs="0"/>
+					<xs:element name="RGE" type="xs:string" minOccurs="0"/>
+					<xs:element name="Section_" type="xs:string" minOccurs="0"/>
+					<xs:element name="SectionPart" type="xs:string" minOccurs="0"/>
+					<xs:element name="Parcel" type="xs:string" minOccurs="0"/>
+					<xs:element name="UTM_E" type="xs:double" minOccurs="0"/>
+					<xs:element name="UTM_N" type="xs:double" minOccurs="0"/>
+					<xs:element name="UTMDatumZone" type="xs:string" minOccurs="0"/>
+					<xs:element name="LatDegree" type="xs:double"/>
+					<xs:element name="LongDegree" type="xs:double"/>
+					<xs:element name="SRS" type="xs:string"/>
+					<xs:element name="LocationUncertaintyStatement" type="xs:string" minOccurs="0"/>
+					<xs:element name="LocationUncertaintyCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="LocationUncertaintyRadius" type="xs:double" minOccurs="0"/>
+					<xs:element name="DrillerTotalDepth" type="xs:double" minOccurs="0"/>
+					<xs:element name="DepthReferencePoint" type="xs:string" minOccurs="0"/>
+					<xs:element name="LengthUnits" type="xs:string" minOccurs="0"/>
+					<xs:element name="WellBoreShape" type="xs:string" minOccurs="0"/>
+					<xs:element name="TrueVerticalDepth" type="xs:double" minOccurs="0"/>
+					<xs:element name="ElevationKB" type="xs:double" minOccurs="0"/>
+					<xs:element name="ElevationDF" type="xs:double" minOccurs="0"/>
+					<xs:element name="ElevationGL" type="xs:double" minOccurs="0"/>
+					<xs:element name="FormationTD" type="xs:string" minOccurs="0"/>
+					<xs:element name="BitDiameterCollar" type="xs:string" minOccurs="0"/>
+					<xs:element name="BitDiameterTD" type="xs:double" minOccurs="0"/>
+					<xs:element name="DiameterUnits" type="xs:string" minOccurs="0"/>
+					<xs:element name="Notes" type="xs:string" minOccurs="0"/>
+					<xs:element name="MaximumRecordedTemperature" type="xs:double" minOccurs="0"/>
+					<xs:element name="MeasuredTemperature" type="xs:double"/>
+					<xs:element name="CorrectedTemperature" type="xs:double" minOccurs="0"/>
+					<xs:element name="TemperatureUnits" type="xs:string"/>
+					<xs:element name="TimeSinceCirculation" type="xs:string" minOccurs="0"/>
+					<xs:element name="CirculationDuration" type="xs:double" minOccurs="0"/>
+					<xs:element name="MeasurementProcedure" type="xs:string" minOccurs="0"/>
+					<xs:element name="CorrectionType" type="xs:string" minOccurs="0"/>
+					<xs:element name="DepthOfMeasurement" type="xs:double" minOccurs="0"/>
+					<xs:element name="MeasurementDateTime" type="xs:string" minOccurs="0"/>
+					<xs:element name="MeasurementFormation" type="xs:string" minOccurs="0"/>
+					<xs:element name="MeasurementSource" type="xs:string"/>
+					<xs:element name="RelatedResource" type="xs:string" minOccurs="0"/>
+					<xs:element name="CasingLogger" type="xs:string" minOccurs="0"/>
+					<xs:element name="CasingBottomDepthDriller" type="xs:double" minOccurs="0"/>
+					<xs:element name="CasingTopDepth" type="xs:double" minOccurs="0"/>
+					<xs:element name="CasingPipeDiameter" type="xs:double" minOccurs="0"/>
+					<xs:element name="CasingWeight" type="xs:double" minOccurs="0"/>
+					<xs:element name="CasingWeightUnits" type="xs:string" minOccurs="0"/>
+					<xs:element name="CasingThickness" type="xs:double" minOccurs="0"/>
+					<xs:element name="DrillingFluid" type="xs:string" minOccurs="0"/>
+					<xs:element name="Salinity" type="xs:string" minOccurs="0"/>
+					<xs:element name="MudResistivity" type="xs:string" minOccurs="0"/>
+					<xs:element name="Density" type="xs:string" minOccurs="0"/>
+					<xs:element name="FluidLevel" type="xs:string" minOccurs="0"/>
+					<xs:element name="pH" type="xs:double" minOccurs="0"/>
+					<xs:element name="Viscosity" type="xs:string" minOccurs="0"/>
+					<xs:element name="FluidLoss" type="xs:string" minOccurs="0"/>
+					<xs:element name="MeasurementNotes" type="xs:string" minOccurs="0"/>
+					<xs:element name="InformationSource" type="xs:string" minOccurs="0"/>
+					<xs:element name="Shape" type="gml:PointPropertyType"/>
 					<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
