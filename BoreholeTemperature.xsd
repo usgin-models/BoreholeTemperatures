@@ -323,7 +323,7 @@ http://schemas.opengis.net/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd </gml
 							<xs:documentation>Report temperatures in either degrees Fahrenheit or Celsius. Use same units throughout this document.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="TimeSinceCirculation" type="xs:string" minOccurs="0">
+					<xs:element name="TimeSinceCirculation" type="xs:double" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Time since circulation of drilling fluid stopped, in decimal hours.</xs:documentation>
 						</xs:annotation>
